@@ -1,6 +1,7 @@
 import { PageComponent } from "./components/page/page.js";
 import { ImageComponent } from "./components/page/item/image.js";
 import { VideoComponent } from "./components/page/item/video.js";
+import { NoteComponent } from "./components/page/item/note.js";
 
 class App {
   private readonly page: PageComponent;
@@ -19,6 +20,9 @@ class App {
       "https://youtu.be/K3-jG52XwuQ"
     );
     video.attachTo(appRoot, "beforeend");
+
+    const note = new NoteComponent("Note Title", "Note Body");
+    note.attachTo(appRoot, "beforeend");
   }
 }
 
