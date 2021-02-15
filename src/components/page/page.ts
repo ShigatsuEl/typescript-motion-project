@@ -6,9 +6,17 @@ export interface IComposable {
 
 type OnCloseListener = () => void;
 
-class PageItemComponent
+interface SectionContainer extends IComponent, IComposable {
+  setOnCloseListener(listener: OnCloseListener): void;
+}
+
+type SectionContainerConstructor = {
+  new (): SectionContainer;
+};
+
+export class PageItemComponent
   extends BaseComponent<HTMLElement>
-  implements IComposable {
+  implements SectionContainer {
   private closeListener?: OnCloseListener;
 
   constructor() {
@@ -37,12 +45,12 @@ class PageItemComponent
 export class PageComponent
   extends BaseComponent<HTMLUListElement>
   implements IComposable {
-  constructor() {
+  constructor(private pageItemConstructor: SectionContainerConstructor) {
     super('<ul class="page"></ul>');
   }
 
   addChild(section: IComponent) {
-    const item = new PageItemComponent();
+    const item = new this.pageItemConstructor();
     item.addChild(section);
     item.attachTo(this.element, "beforeend");
     item.setOnCloseListener(() => {
