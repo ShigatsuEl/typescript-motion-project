@@ -1,6 +1,9 @@
 import { BaseComponent } from "../../base.js";
+import { TextData } from "../dialog.js";
 
-export class TextSectionInput extends BaseComponent<HTMLElement> {
+export class TextSectionInput
+  extends BaseComponent<HTMLElement>
+  implements TextData {
   constructor() {
     super(`<div>
             <div class="form__container">
@@ -14,7 +17,7 @@ export class TextSectionInput extends BaseComponent<HTMLElement> {
           </div>`);
   }
 
-  get text(): string {
+  get title(): string {
     const element = this.element.querySelector("#title")! as HTMLInputElement;
     return element.value;
   }
