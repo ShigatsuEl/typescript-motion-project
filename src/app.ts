@@ -26,6 +26,28 @@ class App {
     this.page = new PageComponent(PageItemComponent);
     this.page.attachTo(appRoot);
 
+    // for Demo:)
+    this.page.addChild(
+      new ImageComponent("Image Title", "https://picsum.photos/800/400")
+    );
+    this.page.addChild(
+      new VideoComponent("Video Title", "https://youtu.be/D7cwvvA7cP0")
+    );
+    this.page.addChild(
+      new NoteComponent("Note Title", "Don't forget to code your dream")
+    );
+    this.page.addChild(new TodoComponent("Todo Title", "TypeScript Course!"));
+    this.page.addChild(
+      new ImageComponent("Image Title", "https://picsum.photos/800/400")
+    );
+    this.page.addChild(
+      new VideoComponent("Video Title", "https://youtu.be/D7cwvvA7cP0")
+    );
+    this.page.addChild(
+      new NoteComponent("Note Title", "Don't forget to code your dream")
+    );
+    this.page.addChild(new TodoComponent("Todo Title", "TypeScript Course!"));
+
     this.bindElementToDialog<MediaSectionInput>(
       "#new-image",
       MediaSectionInput,
@@ -53,8 +75,8 @@ class App {
     InputComponent: InputComponentConstructor<T>,
     makeSection: (input: T) => IComponent
   ) {
-    const imageBtn = document.querySelector(selector)! as HTMLElement;
-    imageBtn.addEventListener("click", () => {
+    const btn = document.querySelector(selector)! as HTMLElement;
+    btn.addEventListener("click", () => {
       const dialog = new InputDialog();
       const input = new InputComponent();
 
