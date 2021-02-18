@@ -1,6 +1,7 @@
 export interface IComponent {
   attachTo(parent: HTMLElement, position?: InsertPosition): void;
   removeFrom(parent: HTMLElement): void;
+  attach(component: IComponent, position?: InsertPosition): void;
 }
 
 export class BaseComponent<T extends HTMLElement> implements IComponent {
@@ -20,5 +21,9 @@ export class BaseComponent<T extends HTMLElement> implements IComponent {
       throw new Error("Parent mismatch!");
     }
     parent.removeChild(this.element);
+  }
+
+  attach(component: IComponent, position: InsertPosition = "afterbegin") {
+    component.attachTo(this.element, position);
   }
 }
